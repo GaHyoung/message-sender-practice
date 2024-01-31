@@ -5,8 +5,14 @@ import com.nhnacademy.edu.springframework.messagesender.service.MessageSender;
 public class MessageSendService {
     public MessageSender messageSender;
 
-    public MessageSendService(MessageSender messageSender){
-        this.messageSender = messageSender;
+    //setter는 기본 생성자가 필요.
+    public MessageSendService(){
+
+    }
+
+    public void setMessageSender(MessageSender messageSender){
+        System.out.println("setMessageSender invoked!");
+       this.messageSender = messageSender;
     }
 
     public void doSendMessage(User user, String message){
