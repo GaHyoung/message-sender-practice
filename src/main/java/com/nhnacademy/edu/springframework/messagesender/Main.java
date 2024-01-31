@@ -14,17 +14,12 @@ public class Main {
 
         String message = "hello";
 
-
         try(ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans.xml")){
-            MessageSender emailMessageSender = context.getBean("emailMessageSender", MessageSender.class);
-            MessageSendService messageSendService = new MessageSendService(emailMessageSender);
+            MessageSendService messageSendService = context.getBean("messageSendService", MessageSendService.class);
             messageSendService.doSendMessage(user, message);
 
         }catch(Throwable th){
             System.out.println(th.getMessage());
         }
-
-
-
     }
 }
