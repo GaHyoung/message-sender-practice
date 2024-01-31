@@ -1,7 +1,8 @@
 package com.nhnacademy.edu.springframework.messagesender;
 
-import com.nhnacademy.edu.springframework.messagesender.service.EmailMessageSender;
+import com.nhnacademy.edu.springframework.messagesender.service.MessageSender;
 import com.nhnacademy.edu.springframework.messagesender.service.SmsMessageSender;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,9 +14,17 @@ public class Main {
 
         String message = "hello";
 
-        SmsMessageSender smsMessageSender = new SmsMessageSender();
 
-        MessageSendService messageSendService = new MessageSendService(smsMessageSender);
-        messageSendService.doSendMessage(user, message);
+        try(ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans.xml")){
+            MessageSender emailMessageSender = context.getBean("emailMessageSender", MessageSender.class);
+            MessageSendService messageSendService = new MessageSendService(emailMessageSender);
+            messageSendService.doSendMessage(user, message);
+
+        }catch(Throwable th){
+            System.out.println(th.getMessage());
+        }
+
+
+
     }
 }
