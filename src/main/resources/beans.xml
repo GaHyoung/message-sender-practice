@@ -11,6 +11,7 @@
     <bean id="smsMessageSender" class="com.nhnacademy.edu.springframework.messagesender.service.SmsMessageSender" >
     </bean>
 
+<!--    constructor di-->
     <bean id="messageSendService" class="com.nhnacademy.edu.springframework.messagesender.MessageSendService">
         <constructor-arg ref="smsMessageSender"/>
     </bean>
