@@ -1,16 +1,14 @@
 package com.nhnacademy.edu.springframework.messagesender;
 
 import com.nhnacademy.edu.springframework.messagesender.service.MessageSender;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class MessageSendService {
+    //Autowired Injection (byType)
+    @Autowired
     public MessageSender messageSender;
 
-    //setter는 기본 생성자가 필요.
-    public MessageSendService(){
-
-    }
-
-    public void setMessageSender(MessageSender messageSender){
+    public void setEmailMessageSender(MessageSender messageSender){
         System.out.println("setMessageSender invoked!");
        this.messageSender = messageSender;
     }

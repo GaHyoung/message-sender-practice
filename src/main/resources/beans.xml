@@ -4,15 +4,17 @@
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+<!--    byType으로 autowire 를 하려면 해당되는 type 의 bean 이 1개만 존재해야-->
+<!--    <bean id="emailMessageSender" class="com.nhnacademy.edu.springframework.messagesender.service.EmailMessageSender" scope="prototype" >-->
+<!--    </bean>-->
 
-    <bean id="emailMessageSender" class="com.nhnacademy.edu.springframework.messagesender.service.EmailMessageSender" >
+    <bean id="smsMessageSender" class="com.nhnacademy.edu.springframework.messagesender.service.SmsMessageSender" scope="singleton">
     </bean>
 
-    <bean id="smsMessageSender" class="com.nhnacademy.edu.springframework.messagesender.service.SmsMessageSender" >
+    <bean id="messageSendService" class="com.nhnacademy.edu.springframework.messagesender.MessageSendService" autowire="byType">
     </bean>
-
-    <bean id="messageSendService" class="com.nhnacademy.edu.springframework.messagesender.MessageSendService">
-        <property name="messageSender" ref="emailMessageSender"/>
-    </bean>
+<!--    <bean id="messageSendService" class="com.nhnacademy.edu.springframework.messagesender.MessageSendService" autowire="byName">-->
+<!--    </bean>-->
+<!--    setter의 이름으로 찾아감. setEmailMessageSender-->
 
 </beans>
