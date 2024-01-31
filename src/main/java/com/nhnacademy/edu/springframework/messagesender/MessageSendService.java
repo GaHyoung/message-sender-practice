@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 public class MessageSendService {
     //Autowired Injection (byType) 해당 필드에 어노페이션.
-    @Autowired
-    @Qualifier("smsMessageSender")
     public MessageSender messageSender;
 
-    public MessageSendService() {
+    public MessageSendService(MessageSender messageSender) {
+        this.messageSender = messageSender;
     }
 
     public void setEmailMessageSender(MessageSender messageSender){

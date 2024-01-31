@@ -1,7 +1,9 @@
 package com.nhnacademy.edu.springframework.messagesender;
 
+import com.nhnacademy.edu.springframework.messagesender.config.MainConfig;
 import com.nhnacademy.edu.springframework.messagesender.service.MessageSender;
 import com.nhnacademy.edu.springframework.messagesender.service.SmsMessageSender;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
@@ -14,12 +16,10 @@ public class Main {
 
         String message = "hello";
 
-        try(ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans.xml")){
-            MessageSendService messageSendService = context.getBean("messageSendService", MessageSendService.class);
-            messageSendService.doSendMessage(user, message);
-
-        }catch(Throwable th){
-            System.out.println(th.getMessage());
+        //javaconfig를 받아주는 context.
+        try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainConfig.class)) {
+            context.getBean("messageSendService", MessageSendService.class).doSendMessage(user, message);
         }
+
     }
 }
