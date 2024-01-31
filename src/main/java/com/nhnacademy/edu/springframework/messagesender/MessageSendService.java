@@ -2,11 +2,16 @@ package com.nhnacademy.edu.springframework.messagesender;
 
 import com.nhnacademy.edu.springframework.messagesender.service.MessageSender;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 public class MessageSendService {
     //Autowired Injection (byType) 해당 필드에 어노페이션.
     @Autowired
+    @Qualifier("smsMessageSender")
     public MessageSender messageSender;
+
+    public MessageSendService() {
+    }
 
     public void setEmailMessageSender(MessageSender messageSender){
         System.out.println("setMessageSender invoked!");
