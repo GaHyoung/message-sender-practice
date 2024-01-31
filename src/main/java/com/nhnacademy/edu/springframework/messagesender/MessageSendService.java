@@ -4,7 +4,7 @@ import com.nhnacademy.edu.springframework.messagesender.service.MessageSender;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class MessageSendService {
-    //Autowired Injection (byType)
+    //Autowired Injection (byType) 해당 필드에 어노페이션.
     @Autowired
     public MessageSender messageSender;
 
