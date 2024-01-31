@@ -1,8 +1,11 @@
-package com.nhnacademy.edu.springframework.messagesender.service;
+package com.nhnacademy.edu.springframework.messagesender.Sender;
 
 import com.nhnacademy.edu.springframework.messagesender.User;
-import com.nhnacademy.edu.springframework.messagesender.service.MessageSender;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 
+@Component
+@Profile({"real"})
 public class EmailMessageSender implements MessageSender {
     @Override
     public void sendMessage(User user, String message) {
